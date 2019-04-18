@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>TestGASP</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="nav">
+    <button id="pause">pause</button>
+    <button id="restart">restart</button>
+</div>
+
+
+<div>
+    <ul>
+        <li>Animation</li>
+        <li>d'un titre</li>
+        <li>avec</li>
+        <li>gsap</li>
+    </ul>
+</div>
+
+<style>
+    button {
+        padding:10px;
+        margin:30px;
+        width:120px;
+        cursor:pointer;
+
+    }
+    .nav {
+
+        text-align:center;
+        position: fixed;
+        z-index: 100;
+
+    }
+
+    ul{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+    }
+    li{
+        color: #ff0300;
+        font-family: 'Kaushan Script', cursive;
+        font-size: 150px;
+        list-style: none;
+        justify-content: center;
+        text-align: center;
+        line-height: 190px;
+    }
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+
+<script>
+
+    var tl = new TimelineMax()
+
+
+    document.getElementById("restart").addEventListener('click',() => tl.restart());
+    document.getElementById("pause").addEventListener('click', fToggle);
+    function fToggle() {
+        tl.paused(!tl.paused());
+        document.getElementById("pause").innerHTML = tl.paused() ? "play" : "pause";
+    }
+
+
+
+    tl.staggerFrom('li', 1, {
+        opacity: 0,
+        scale: 2,
+        color: "#0000FF",
+        cycle: {
+            x: [-200, 100, 200, 300],
+            rotationX: [-100, 100,]
+        },
+    });
+
+    tl.to('li', 1, {
+        opacity: 0,
+        color: "#FFEB00",
+        delay: 1,
+    });
+
+
+
+
+
+</script>
+
+</body>
+
+</html>
